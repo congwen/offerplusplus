@@ -2,7 +2,7 @@ import java.util.PriorityQueue;
 import java.util.Random;
 
 
-class Solution {
+class Solution215 {
     
     private final static Random random = new Random(System.currentTimeMillis());
     

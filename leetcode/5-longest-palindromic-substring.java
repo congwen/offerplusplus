@@ -1,4 +1,4 @@
-class Main{
+class Solution5{
     public String longestPalindrome1(String s) {
 
         if (s == null || s.length() == 0) {
@@ -63,6 +63,6 @@ class Main{
 
     public static void main(String[] args) {
         String s="babad";
-        System.out.println(new Main().longestPalindrome2(s));
+        System.out.println(new Solution5().longestPalindrome2(s));
     }
 }

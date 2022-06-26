@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-class Solution {
+class Solution39 {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> res= new ArrayList<>();//返回结果
         List<Integer> path=new ArrayList<>();//保存中间结果

@@ -15,7 +15,7 @@
          ListNode(int val) { this.val = val; }
          ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  }
-class Solution {
+class Solution148 {
     public ListNode sortList(ListNode head) {
         // 1、递归结束条件
         if (head == null || head.next == null) {
