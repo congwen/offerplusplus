@@ -1,6 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
-
+//https://leetcode.cn/problems/two-sum/
 class Solution1 {
     public int[] twoSum(int[] nums, int target) {
         //使用hashmap来保存历史数据
