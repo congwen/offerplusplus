@@ -13,64 +13,40 @@ class Solution215 {
      * @return
      */
     public int findKthLargest(int[] nums, int k) {
-        // 第 1 大的数，下标是 len - 1;
-        // 第 2 大的数，下标是 len - 2;
-        // ...
-        // 第 k 大的数，下标是 len - k;
-        int len = nums.length;
-        int target = len - k;
-        
-        int left = 0;
-        int right = len - 1;
-        int res=0;
-        while (left <=right) {
-            int pivotIndex = partition(nums, left, right);
-            if (pivotIndex == target) {
-                res= nums[pivotIndex]; 
-                break;
-            } else if (pivotIndex < target) {
-                left = pivotIndex + 1; 
-            } else {
-                // pivotIndex > target
-                right = pivotIndex - 1; 
+        int left=0,right=nums.length-1;
+        while(left <= right){
+            int pivot=partition(nums,left,right);
+            if((pivot+1) ==k){
+                return nums[pivot];
+            }else if((pivot+1) < k){
+                left =pivot +1;
+            }else{
+                right =pivot ;
             }
         }
-        return res;
+        return 0;
     }
-    
-    private int partition(int[] nums, int left, int right) {
-        int randomIndex = left + random.nextInt(right - left + 1);
-        swap(nums, left, randomIndex);
-        
-        
-        // all in nums[left + 1..le) <= pivot;
-        // all in nums(ge..right] >= pivot;
-        int pivot = nums[left];
-        int le = left + 1;
-        int ge = right;
-        
-        while (true) {
-            while (le <= ge && nums[le] < pivot) {
-                le++;
+
+    public int partition(int[] nums,int left,int right){
+        int idx = random.nextInt(right - left + 1) + left;
+        swap(nums, idx,left);
+        int base = nums[left];
+        // 快速排序，注意是从大到小，因为我们找的是第K 大
+        while (left < right) {
+            while (left < right && nums[right] <= base) {
+                --right;
             }
-            
-            while (le <= ge && nums[ge] > pivot) {
-                ge--;
+            nums[left] = nums[right];
+            while (left < right && nums[left] >= base) {
+                ++left;
             }
-            
-            if (le >= ge) {
-                break;
-            }
-            swap (nums, le, ge);
-            le++;
-            ge--;
+            nums[right] = nums[left];
         }
-        
-        swap(nums, left, ge);
-        return ge;
+        nums[left] = base;
+        return left;
     }
-    
-    private void swap(int[] nums, int index1, int index2) {
+
+      private void swap(int[] nums, int index1, int index2) {
         int temp = nums[index1];
         nums[index1] = nums[index2];
         nums[index2] = temp;
